@@ -10,10 +10,10 @@ export default function Home() {
       <div className="py-1 bg-none">
       <Navbar />
       </div>
-          <div class="flex ...">
-    <div class="w-24 flex-auto ..."><Menu /></div>
-    <div class="w-60 flex-auto ..."><Message /></div>
-    <div class="w-44 flex-auto ..."></div>
+          <div className="flex ...">
+    <div className="w-24 flex-auto ..."><Menu /></div>
+    <div className="w-60 flex-auto ..."><Message /></div>
+    <div className="w-44 flex-auto ..."></div>
     <Footer/>
   </div>
     </div>

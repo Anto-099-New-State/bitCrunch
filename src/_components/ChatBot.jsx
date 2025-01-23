@@ -65,31 +65,33 @@ const ChatBot = () => {
     <div className="flex flex-col h-[80vh] max-w-2xl mx-auto bg-gray-900 text-gray-100">
       
       <div className="flex-grow overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
-          <div 
-            key={message.id} 
-            className={`flex items-start space-x-3 ${
-              message.sender === 'user' ? 'justify-end' : 'justify-start'
-            }`}
-          >
-            {message.sender === 'bot' && (
-              <Bot className="w-8 h-8 text-blue-400 shrink-0" />
-            )}
-            <div 
-              className={`
-                max-w-[80%] p-3 rounded-lg 
-                ${message.sender === 'user' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-700 text-gray-200'}
-              `}
-            >
-              {message.text}
-            </div>
-            {message.sender === 'user' && (
-              <User className="w-8 h-8 text-green-400 shrink-0" />
-            )}
-          </div>
-        ))}
+      {messages.map((message) => (
+  <div 
+    key={message.id} 
+    className={`flex items-start space-x-3 ${
+      message.sender === 'user' ? 'justify-end' : 'justify-start'
+    }`}
+  >
+    {message.sender === 'bot' && (
+      <Bot className="w-8 h-8 text-blue-400 shrink-0" />
+    )}
+    <div 
+      className={`
+        max-w-[80%] p-3 rounded-lg 
+        ${message.sender === 'user' 
+          ? 'bg-blue-600 text-white' 
+          : 'bg-gray-700 text-gray-200'}
+      `}
+      {...(message.sender === 'bot'
+        ? { dangerouslySetInnerHTML: { __html: marked(message.text) } }
+        : { children: message.text })}
+    ></div>
+    {message.sender === 'user' && (
+      <User className="w-8 h-8 text-green-400 shrink-0" />
+    )}
+  </div>
+))}
+
         {loading && (
           <div className="flex justify-start items-center space-x-3">
             <Bot className="w-8 h-8 text-blue-400" />
